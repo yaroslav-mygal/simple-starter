@@ -6,7 +6,8 @@ const gulp = require("gulp"),
   clean = require("gulp-clean"),
   autoprefixer = require("gulp-autoprefixer"),
   sourcemaps = require("gulp-sourcemaps"),
-  useref = require("gulp-useref");
+  useref = require("gulp-useref"),
+  spritesmith = require("gulp.spritesmith");
 
 // path
 const dir = {
@@ -67,6 +68,18 @@ gulp.task("enter-dev", function() {
   process.env.NODE_ENV = "development";
 });
 
+gulp.task("sprite", function() {
+  var spriteData = gulp.src(path.src.spriteSource).pipe(
+    spritesmith({
+      imgName: "../images/sprite/sprite.png",
+      cssName: "_sprite.scss",
+      padding: 4
+    })
+  );
+  spriteData.css.pipe(gulp.dest(path.src.spriteCss));
+  spriteData.img.pipe(gulp.dest(path.dev.spriteImg));
+});
+
 gulp.task("html", function() {
   return gulp
     .src(path.src.html)
@@ -115,7 +128,7 @@ gulp.task("watch", function() {
 });
 
 gulp.watch(path.src.img, ["images"]);
-// gulp.watch(path.src.spriteSource, ["sprite"]);
+gulp.watch(path.src.spriteSource, ["sprite"]);
 // gulp.watch(path.src.fonts, ["fonts"]);
 gulp.watch(path.src.root + "/assets/scss/**/*.scss", ["sass"]);
 gulp.watch(path.src.html, ["html"]);
