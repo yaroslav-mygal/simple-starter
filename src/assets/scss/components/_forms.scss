@@ -4,8 +4,14 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  label {
+    margin-bottom: 10px;
+  }
   .form-item {
-    margin-bottom: 35px;
+    margin-bottom: 24px;
+    &.form-item_textarea {
+      padding-top: 10px;
+    }
   }
   .form-control {
     background: none;
@@ -25,13 +31,18 @@
   .contact-form__action {
     text-align: center;
     width: 100%;
-    padding-top: 5px;
+    padding-top: 35px;
   }
   .form-item {
     width: 100%;
     &.form-item_middle {
-      width: 47.94%;
+      @include media-breakpoint-up(md) {
+        width: 47.94%;
+      }
     }
+  }
+  .btn {
+    letter-spacing: 1.4px;
   }
 }
 .btn {
@@ -47,9 +58,52 @@
   line-height: 60px;
   background-color: #0080ff;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  transition: all 0.35s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #0572de;
+    color: #fff;
+  }
   &.btn_white {
     background-color: #fff;
     color: #0080ff;
+    &:hover {
+      color: #0080ff;
+      background-color: #e8e5e5;
+    }
+  }
+}
+.splash-card__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+  .form-control {
+    background: none;
+    border-radius: 5px;
+    height: 50px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 18px;
+    @include media-breakpoint-up(md) {
+      width: 170px;
+    }
+  }
+  .btn {
+    height: 50px;
+    line-height: 48px;
+    border-radius: 5px;
+    background: #fff;
+    color: #e23552;
+    width: 100%;
+    margin-top: 15px;
+    @include media-breakpoint-up(md) {
+      width: 170px;
+      margin-top: 0;
+    }
   }
 }

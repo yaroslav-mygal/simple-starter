@@ -1,0 +1,54 @@
+.icon {
+  display: inline-block;
+  vertical-align: top;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.icon_types {
+  @include sprite($icon-types);
+}
+.icon_experiment {
+  @include sprite($icon-experiment);
+}
+.icon_story {
+  @include sprite($icon-story);
+}
+.icon_alert {
+  @include sprite($icon_alert);
+}
+.icon_grow {
+  @include sprite($icon-grow);
+}
+.icon_abuse {
+  @include sprite($icon-abuse);
+}
+.icon-facebook {
+  @include sprite($facebook);
+}
+.icon-twitter {
+  @include sprite($twitter);
+}
+.icon-linkedin {
+  @include sprite($linkedin);
+}
+.icon_logo {
+  @include sprite($logo-xs);
+  @include mymedia-breakpoint-up(479px) {
+    @include sprite($logo);
+  }
+}
+.icon-computer {
+  @include sprite($computer-md);
+  @include media-breakpoint-up(sm) {
+    @include sprite($computer-lg);
+  }
+  @include media-breakpoint-up(md) {
+    @include sprite($computer-md);
+  }
+  @include media-breakpoint-up(lg) {
+    @include sprite($computer-lg);
+  }
+  @include media-breakpoint-up(xl) {
+    @include sprite($computer-xl);
+  }
+}

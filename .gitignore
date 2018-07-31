@@ -49,4 +49,8 @@ Thumbs.db
 
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+dev/assets
+dev/*.html
 node_modules
+src/assets/scss/components/_sprite.scss
+dist

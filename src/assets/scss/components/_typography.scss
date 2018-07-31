@@ -1,6 +1,18 @@
+h1 {
+  font-size: 38px;
+  line-height: 50px;
+  margin-bottom: 30px;
+  @include mymedia-breakpoint-up(479px) {
+    font-size: 48px;
+    line-height: 60px;
+  }
+}
 h2,
 h3 {
-  font-size: 36px;
+  font-size: 27px;
+  @include mymedia-breakpoint-up(479px) {
+    font-size: 36px;
+  }
 }
 h5 {
   font-size: 21px;

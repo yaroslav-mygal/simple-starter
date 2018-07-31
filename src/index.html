@@ -1,68 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Alert Me</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all">
-  <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js">
-     </script>
-  <![endif]-->
-</head>
-<body>
-  <div id="page">
-    <div class="page-header">
-      <div class="container"> <strong class="logo"><a href="#">Alert Me</a></strong>
-        <nav class="navigation"> <a href="" class="navigation__switcher"></a>
-          <ul class="navigation__list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Plans</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li class="navigation__contact-item"><a href="#">Contact Us</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="splash">
-      <div class="container">
+ @@include('./page-head.html', { "page-title":"Alert Me" })
+<div id="page" class="home-page">
+  @@include('./header.html')
+  <div class="splash">
+    <div class="container">
+      <div class="splash__wrap">
         <section class="splash__content">
           <h1>Have You Been Hacked? Find Out</h1>
           <p>AlertMe Scans An Ever Growing Database of Over 5 Billion Compromised Accounts Daily and Notifies You if Your Personal Information is Safe</p>
           <div class="splash-card">
             <form action="#">
               <div class="splash-card__form">
-                <input type="text" name="" id="" placeholder="My Email Address">
-                <input type="submit" value="Check Now"> </div>
+                <input type="text" class="form-control" name="email" id="email" placeholder="My Email Address">
+                <input class="btn" type="submit" value="Check Now"> </div>
             </form> <span class="splash-card__divider">Or</span> <span class="splash-card__summary">Get notified of hacks that affect my password:
-Email Watchdog FREE and paid plans</span> </div>
+<strong>Email Watchdog FREE and paid plans</strong></span> </div>
         </section>
+        <div class="splash-img"> <i class="icon icon-computer">computer</i> </div>
       </div>
+
     </div>
-    <div class="section-main">
-      <div class="container">
-        <div class="headline">
-          <h2>Daily Statistics</h2>
-        </div>
-        <div class="statistics-area">
-          <div class="statistic-item">
-            <div class="statistic-item__icon"> <i class="icon icon_types">types</i> </div>
-            <div class="statistic-item__body">
-              <p>There are three types of lies -- lies, damn lies, and statistics</p>
-            </div>
-          </div>
-          <div class="statistic-item">
-            <div class="statistic-item__icon"> <i class="icon icon_statistician">statistician</i> </div>
-            <div class="statistic-item__body">
-              <p>If your experiment needs a statistician, you need a better experiment</p>
-            </div>
-          </div>
-          <div class="statistic-item">
-            <div class="statistic-item__icon"> <i class="icon icon_story">story</i> </div>
-            <div class="statistic-item__body">
-              <p>99 percent of all statistics only tell 49 percent of the story</p>
-            </div>
+  </div>
+  <div class="section-main">
+    <div class="container">
+      <div class="headline">
+        <h2>Daily Statistics</h2>
+      </div>
+      <div class="statistics-area">
+        <div class="statistic-item">
+          <div class="statistic-item__icon"> <i class="icon icon_types">types</i> </div>
+          <div class="statistic-item__body">
+            <p>There are three types of lies -- lies, damn lies, and statistics</p>
           </div>
         </div>
+        <div class="statistic-item">
+          <div class="statistic-item__icon"> <i class="icon icon_experiment">experiment</i> </div>
+          <div class="statistic-item__body">
+            <p>If your experiment needs a statistician, you need a better experiment</p>
+          </div>
+        </div>
+        <div class="statistic-item">
+          <div class="statistic-item__icon"> <i class="icon icon_story">story</i> </div>
+          <div class="statistic-item__body">
+            <p>99 percent of all statistics only tell 49 percent of the story</p>
+          </div>
+        </div>
+      </div>
+      <div class="plan-wrap" id="plans">
         <div class="headline">
           <h3>We have a Plan for You</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
@@ -90,99 +73,108 @@ Email Watchdog FREE and paid plans</span> </div>
             </article>
           </section>
         </div>
-        <div class="faq-area">
-          <div class="headline">
-            <h3>Frequently asked questions</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">How do I know if my information has been hacked?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder">
-                <p>If your email address has been found in a breach then we will notify you via email within 24 hours of the data being available to our system.</p>
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">I've been hacked! What do I do?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder">
-                <p>The best thing to do is to immediately change your password on the account which has been breached. Your notification from AlertMe will tell you where at which service the hack has occured.</p>
-                <p>Following that it is a best practice to change ALL of your passwords. Consider using a third party password management service to assist you in generating and managing your passwords to avoid re-use.</p>
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">How much does your service cost?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder">
-                <p>Please see our pricing page</p>
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">Can I monitor more than 1 email address?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder"> </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">Where do you get your information?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder"> </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <h5 class="faq-item__head">Do you store my account information from the breaches?</h5>
-            <div class="faq-item__body">
-              <div class="faq-item__holder"> </div>
-            </div>
-          </div>
-        </div>
-        <ul class="socials-list">
-          <li><a href="#" class="social-link"><i class="icon-facebook">facebook</i></a></li>
-          <li><a href="#" class="social-link"><i class="icon-twitter">twitter</i></a></li>
-          <li><a href="#" class="social-link"><i class="icon-linkedin">linkedin</i></a></li>
-        </ul>
       </div>
     </div>
-    <div class="section-statistics">
-      <div class="container">
-        <div class="headline">
-          <h3>Interested in statistics?</h3> <a href="#" class="btn">Check out Here</a> </div>
-      </div>
-    </div>
-    <div class="section-contact">
-      <div class="container">
-        <div class="headline">
-          <h3>Contact Us</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
-        </div>
-        <form action="#">
-          <div class="contact-form">
-            <div class="form-item form-item_middle">
-              <input type="text" class="form-control" placeholder="Your Name *" name="name"> </div>
-            <div class="form-item form-item_middle">
-              <input type="text" class="form-control" placeholder="Your Company" name="company"> </div>
-            <div class="form-item form-item_middle">
-              <input type="email" class="form-control" placeholder="Your Email Address*" name="email"> </div>
-            <div class="form-item form-item_middle">
-              <input type="text" class="form-control" placeholder="Your Phone Number *" name="phone"> </div>
-            <div class="form-item">
-              <label for="massage">Your Email Address*</label>
-              <textarea name="massage" class="form-control" id="massage" cols="30" rows="10"></textarea> </div>
-            <div class="contact-form__action">
-              <input type="submit" class="btn btn_white" value="SUBMIT MESSAGE"> </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <footer class="page-footer">
-      <p>Copyright &copy; 2017. All rights reserved.</p>
-    </footer>
   </div>
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
-  <!-- scripts -->
-</body>
-</html>
+  <div class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-area">
+        <div class="headline">
+          <h3>Frequently asked questions</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">How do I know if my information has been hacked?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>If your email address has been found in a breach then we will notify you via email within 24 hours of the data being available to our system.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">I've been hacked! What do I do?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>The best thing to do is to immediately change your password on the account which has been breached. Your notification from AlertMe will tell you where at which service the hack has occured.</p>
+              <p>Following that it is a best practice to change ALL of your passwords. Consider using a third party password management service to assist you in generating and managing your passwords to avoid re-use.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">How much does your service cost?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>Please see our pricing page</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">Can I monitor more than 1 email address?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>If your email address has been found in a breach then we will notify you via email within 24 hours of the data being available to our system.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">Where do you get your information?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>If your email address has been found in a breach then we will notify you via email within 24 hours of the data being available to our system.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item close">
+          <h5 class="faq-item__head">Do you store my account information from the breaches?</h5>
+          <div class="faq-item__body">
+            <div class="faq-item__holder">
+              <p>If your email address has been found in a breach then we will notify you via email within 24 hours of the data being available to our system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="socials-list">
+        <li><a href="#" target="_blank" class="social-link"><i class="icon icon-facebook">facebook</i></a></li>
+        <li><a href="#" class="social-link"><i class="icon icon-twitter">twitter</i></a></li>
+        <li><a href="#" class="social-link"><i class="icon icon-linkedin">linkedin</i></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section-statistics">
+    <div class="container">
+      <div class="headline">
+        <h3>Interested in statistics?</h3>
+      </div>
+      <div class="section-statistics__action">
+        <a href="#" class="btn">Check out Here</a>
+      </div>
+    </div>
+  </div>
+  <div class="section-contact" id="contact">
+    <div class="container">
+      <div class="headline">
+        <h3>Contact Us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+      </div>
+      <form action="#">
+        <div class="contact-form">
+          <div class="form-item form-item_middle">
+            <input type="text" class="form-control" placeholder="Your Name *" name="name"> </div>
+          <div class="form-item form-item_middle">
+            <input type="text" class="form-control" placeholder="Your Company" name="company"> </div>
+          <div class="form-item form-item_middle">
+            <input type="email" class="form-control" placeholder="Your Email Address*" name="email"> </div>
+          <div class="form-item form-item_middle">
+            <input type="text" class="form-control phone-mask" placeholder="Your Phone Number *" name="phone"> </div>
+          <div class="form-item form-item_textarea">
+            <label for="massage">How can we help?</label>
+            <textarea name="massage" class="form-control" id="massage" cols="30" rows="10"></textarea> </div>
+          <div class="contact-form__action">
+            <input type="submit" class="btn btn_white" value="SUBMIT MESSAGE"> </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  @@include('./footer.html')
+</div>
+@@include('./scripts.html')

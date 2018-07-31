@@ -48,17 +48,17 @@
   align-items: center;
 }
 
-@mixin media-breakpoint-up($media) {
+@mixin mymedia-breakpoint-up($media) {
   @media only screen and (min-width: $media) {
     @content;
   }
 }
-@mixin media-breakpoint-between($from, $to) {
+@mixin mymedia-breakpoint-between($from, $to) {
   @media only screen and (min-width: $from) and (max-width: $to) {
     @content;
   }
 }
-@mixin media-breakpoint-down($media) {
+@mixin mymedia-breakpoint-down($media) {
   @media only screen and (max-width: $media) {
     @content;
   }
