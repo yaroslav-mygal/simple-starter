@@ -33,13 +33,16 @@
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-merge-media-queries": "^0.2.1",
+    "gulp-plumber": "^1.2.0",
+    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.1",
     "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.5",
     "gulp.spritesmith": "^6.9.0",
-    "imagemin-pngquant": "^6.0.0"
+    "imagemin-pngquant": "^6.0.0",
+    "penthouse": "^1.7.0"
   },
   "dependencies": {
     "bootstrap": "^4.1.2",

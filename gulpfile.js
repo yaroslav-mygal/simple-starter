@@ -15,7 +15,10 @@ const gulp = require("gulp"),
   mmq = require("gulp-merge-media-queries"),
   cleanCSS = require("gulp-clean-css"),
   imagemin = require("gulp-imagemin"),
-  pngquant = require("imagemin-pngquant");
+  pngquant = require("imagemin-pngquant"),
+  plumber = require('gulp-plumber'),
+  penthouse = require('penthouse'),
+  replace = require('gulp-replace');
 
 // path
 const dir = {
@@ -78,10 +81,24 @@ gulp.task("enter-dev", function() {
 gulp.task("sprite", function() {
   const imgFolder = process.env.NODE_ENV === "production" ? path.dist.spriteImg : path.dev.spriteImg;
 
-  var spriteData = gulp.src(path.src.spriteSource).pipe(spritesmith({ imgName: "../images/sprite/sprite.png", cssName: "_sprite.scss", padding: 4 }));
+  const spriteData = gulp.src(path.src.spriteSource).pipe(spritesmith({ imgName: "../images/sprite/sprite.png", cssName: "_sprite.scss", padding: 4 }));
   spriteData.css.pipe(gulp.dest(path.src.spriteCss));
   spriteData.img.pipe(gulp.dest(imgFolder));
 });
+
+gulp.task('rsprite', function () {
+  const spriteFolder = process.env.NODE_ENV === "production" ? path.dist.spriteImg : path.dev.spriteImg;
+  const spriteData = gulp.src(path.src.spriteRetinaSource+'/*.png').pipe(spritesmith({
+    retinaSrcFilter: [path.src.spriteRetinaSource+'/*@2x.png'],
+    imgName: '../images/sprite/sprite-retina.png',
+    retinaImgName: '../images/sprite/sprite-retina@2x.png',
+    cssName: '_sprite-retina.scss',
+    padding: 4
+  }));
+  spriteData.css.pipe(gulp.dest(path.src.spriteCss));
+  spriteData.img.pipe(gulp.dest(spriteFolder));
+});
+
 
 gulp.task("html", function() {
   if (process.env.NODE_ENV === "production") {
@@ -114,6 +131,7 @@ gulp.task("sass", function() {
   if (process.env.NODE_ENV === "production")
     return gulp
       .src(path.src.styles)
+      .pipe(plumber())
       .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
       .pipe(mmq({ log: true }))
       .pipe(cleanCSS({ keepSpecialComments: 0 }))
@@ -121,6 +139,7 @@ gulp.task("sass", function() {
   else {
     return gulp
       .src(path.src.styles)
+      .pipe(plumber())
       .pipe(sourcemaps.init())
       .pipe(sass().on("error", sass.logError))
       .pipe(autoprefixer(autoprefixerSettings))
@@ -129,12 +148,11 @@ gulp.task("sass", function() {
   }
 });
 
-gulp.task("js", function() {
-  return gulp
-    .src(path.src.js)
-    .pipe(gulp.dest(path.dev.js))
-    .pipe(browserSync.stream());
-});
+gulp.task('fonts', function(){
+  const fontsFolder = process.env.NODE_ENV === "production" ? path.dist.fonts : path.dev.fonts;
+  return gulp.src(path.src.fonts)
+         .pipe(gulp.dest(fontsFolder));
+})
 
 gulp.task("images", function() {
   if (process.env.NODE_ENV === "production")
@@ -145,17 +163,57 @@ gulp.task("images", function() {
   else return gulp.src(path.src.img).pipe(gulp.dest(path.dev.img));
 });
 
+var pages = [
+  {
+    urlSource: 'dist/index.html',
+    css: 'dist/assets/css/styles.css',
+    url: 'dist/index.html'
+  },
+];
+
+gulp.task('penthouse', function () {
+
+  pages.forEach( function(element, index) {
+
+    penthouse({
+      url: element.urlSource,
+      css: element.css,
+      height: 1500,
+      width: 2000,
+    }, function (err, criticalCss) {
+
+       // var newCriticalCssWp = criticalCss.replace( /..\/images/g, "/wp-content/themes/precisiontax/front-end/dist/assets/images");
+       // var cleanCssWp = new cleanCSS().minify(newCriticalCssWp);
+       // fs.writeFileSync('dist/assets/css/critical-front.css', cleanCssWp.styles );
+
+
+       var newCriticalCss = criticalCss.replace( /..\/images/g, "assets/images/");
+       var cleanCss = new cleanCSS().minify(newCriticalCss);
+
+       gulp.src(element.url)
+      //.pipe(inject.after('<!-- Critical CSS -->', '\n<style>\n' + cleanCss.styles + '\n</style>'))
+      .pipe(inject.after('<!-- Critical CSS -->', '\n<style>\n' + cleanCss.styles + '\n</style>'))
+      .pipe(gulp.dest('dist'))
+    });
+
+
+  });
+
+});
+
+
 gulp.task("watch", function() {
   browserSync.init({ server: { baseDir: path.dev.html }, files: [path.dev.html + "/*.html", path.dev.styles + "/*.css", path.dev.img + "/**/*", path.dev.js + "/**/*"], tunnel: true, logLevel: "info" });
 });
 
 gulp.watch(path.src.img, ["images"]);
 gulp.watch(path.src.spriteSource, ["sprite"]);
-// gulp.watch(path.src.fonts, ["fonts"]);
 gulp.watch(path.src.root + "/assets/scss/**/*.scss", ["sass"]);
 gulp.watch(path.src.html, ["html"]);
-// gulp.watch(path.src.htmlIncludes, ["html"]);
 gulp.watch(path.src.js, ["js"]);
+
+// gulp.watch(path.src.fonts, ["fonts"]);
+// gulp.watch(path.src.htmlIncludes, ["html"]);
 
 gulp.task("default", ["watch"]);
 
@@ -168,5 +226,5 @@ gulp.task("dist", ["enter-prod", "clean"], function() {
 });
 
 gulp.task("build", function(cb) {
-  gulpSequence("sprite", "sass", "html", "images", cb);
+  gulpSequence("sprite", "html", "images", "sass", cb);
 });
